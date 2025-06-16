@@ -1,0 +1,11 @@
+.sectionsWrapper {
+  & + .sectionsWrapper {
+    margin-top: 15px;
+  }
+  padding: 5px 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: "center";
+  align-items: "flex-start";
+}

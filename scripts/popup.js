@@ -1,3 +1,4 @@
+/* global chrome */
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("toggle");
 
@@ -7,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   toggle.addEventListener("change", () => {
     chrome.storage.sync.set({ active: toggle.checked }, () => {
+      console.log(toggle.checked);
+
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.scripting.executeScript({
           target: { tabId: tabs[0].id },

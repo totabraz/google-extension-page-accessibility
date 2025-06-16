@@ -6,22 +6,41 @@
   "permissions": ["storage", "scripting", "tabs"],
   "host_permissions": ["<all_urls>"],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "index.html",
     "default_title": "Destacar imagens sem ALT"
-  },
-  "background": {
-    "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "js": ["scripts/content.js", "scripts/popup.js"],
       "run_at": "document_idle"
     }
   ],
+  "{{chrome}}.manifest_version": 3,
+  "{{firefox}}.manifest_version": 2,
   "icons": {
     "16": "icon.png",
+    "32": "icon.png",
     "48": "icon.png",
+    "96": "icon.png",
     "128": "icon.png"
+  },
+  "{{chrome}}.action": {
+    "default_popup": "index.html"
+  },
+  "{{firefox}}.browser_action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "{{chrome}}.service_worker": "scripts/background.js",
+    "{{firefox}}.scripts": ["scripts/background.js"]
+  },
+  "content": {
+    "{{chrome}}.service_worker": "scripts/content.js",
+    "{{firefox}}.scripts": ["scripts/content.js"]
+  },
+  "popup": {
+    "{{chrome}}.service_worker": "scripts/popup.js",
+    "{{firefox}}.scripts": ["scripts/popup.js"]
   }
 }

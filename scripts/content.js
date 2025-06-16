@@ -1,20 +1,21 @@
-function checkImagesWithoutAlt() {
-  const imgs = document.querySelectorAll("img");
+/* global chrome */
+function checkImageWithoutPropAlt() {
+  const images = document.querySelectorAll("img");
 
-  imgs.forEach((img) => {
+  images.forEach((img) => {
     const alt = img.getAttribute("alt");
     if (alt === null || alt.trim() === "") {
-      img.style.border = "4px solid red !important";
+      img.style.border = "4px solid red";
     } else {
       img.style.border = "";
     }
   });
 }
 
-function startObserver() {
+function checkObserver() {
   const observer = new MutationObserver(() => {
     clearTimeout(observer.debounceTimeout);
-    observer.debounceTimeout = setTimeout(checkImagesWithoutAlt, 300);
+    observer.debounceTimeout = setTimeout(checkImageWithoutPropAlt, 300);
   });
 
   observer.observe(document.body, {
@@ -22,12 +23,12 @@ function startObserver() {
     subtree: true,
   });
 
-  checkImagesWithoutAlt();
+  checkImageWithoutPropAlt();
 }
 
 chrome.storage.sync.get("active", (data) => {
   if (data.active) {
-    startObserver();
+    checkObserver();
   } else {
     document.querySelectorAll("img").forEach((img) => {
       img.style.border = "";
