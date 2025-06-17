@@ -1,10 +1,3 @@
-// import { defineConfig } from 'vite'
-// import react from '@vitejs/plugin-react'
-
-// // https://vite.dev/config/
-// export default defineConfig({
-//   plugins: [react()],
-// })
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import webExtension, { readJsonFile } from "vite-plugin-web-extension";
@@ -20,7 +13,6 @@ function generateManifest() {
   };
 }
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -28,10 +20,15 @@ export default defineConfig({
       manifest: generateManifest,
     }),
   ],
+  resolve: {
+    alias: {
+      "@": new URL("./src", import.meta.url).pathname,
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/styles/_variables.scss";`,
+        additionalData: `@use "@/styles/_variables.scss" as *;`,
       },
     },
   },
