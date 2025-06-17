@@ -6,22 +6,24 @@
   "permissions": ["storage", "scripting", "tabs"],
   "host_permissions": ["<all_urls>"],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "index.html",
     "default_title": "Destacar imagens sem ALT"
-  },
-  "background": {
-    "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "js": ["src/scripts/content.jsx"],
       "run_at": "document_idle"
     }
   ],
   "icons": {
     "16": "icon.png",
+    "32": "icon.png",
     "48": "icon.png",
+    "96": "icon.png",
     "128": "icon.png"
+  },
+  "background": {
+    "service_worker": "src/scripts/background.js"
   }
 }

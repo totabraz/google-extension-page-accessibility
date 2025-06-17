@@ -1,0 +1,17 @@
+.pageWrapper {
+  min-width: 400px;
+  min-height: 400px;
+  padding: 5px 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: "center";
+  align-items: "flex-start";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  max-width: 250px;
+  z-index: 9999999999999999;
+}
